@@ -1,22 +1,212 @@
-# Learn HTML5 | FGX
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML5 | FGX</title>
+    <link rel="icon" type="image/png" href="FGX.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #4f46e5;
+            --text: #1f2937;
+            --background: rgba(17, 24, 39, 0.95);
+        }
 
-مرحبًا بك في موقع "Learn HTML5" للمطورين المبتدئين!  
-هذا الموقع مخصص لتعليم أساسيات البرمجة باستخدام **HTML5** وتقديم محتوى تعليمي خطوة بخطوة للمساعدة في بناء مواقع الويب.
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-## عن الموقع
-في هذا الموقع، ستتعلم كيفية استخدام تقنيات HTML5 الحديثة بشكل مبسط، وتطوير مهارات البرمجة الخاصة بك. إذا كنت مبتدئًا أو لديك خبرة بسيطة في البرمجة، هذا الموقع سيكون نقطة انطلاق ممتازة لك.
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
 
-## كيفية الاستخدام
-1. ابدأ بتصفح الدروس المقدمة في الموقع.
-2. كل درس يحتوي على مثال عملي يمكنك استخدامه مباشرة.
-3. استمتع بتعلم البرمجة وتطبيق المفاهيم التي ستتعلمها في بناء مشاريع حقيقية.
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
 
-## روابط إضافية
-- [قائمة الدروس التعليمية على YouTube](https://www.youtube.com/watch?v=E1z1qWWCGGA&list=PLPTNqXpQ2tbj12WDefiTH0VgnrTacD9cE)
-- [متابعة على فيسبوك](https://www.facebook.com/faycel.bsr)
-- [متابعة على إنستغرام](https://www.instagram.com/faycel.142/)
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+        }
 
-## التواصل
-إذا كنت بحاجة إلى مساعدة أو كان لديك أي استفسار، لا تتردد في التواصل عبر الإيميل أو عبر منصات التواصل الاجتماعي الخاصة بي.
+        .gradient-text {
+            background: linear-gradient(to right, #60a5fa, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
 
-- [البريد الإلكتروني](mailto:faysalcommerce@gmail.com)
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            background-color: var(--primary);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="glass-nav fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 floating">
+                    <img src="favicon.png" alt="Logo" class="h-10 w-10">
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="text-white hover:text-blue-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium">About me</a>
+                        <a href="#lessons" class="text-white hover:text-blue-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium">About website</a>
+                        <a href="#contact" class="text-white hover:text-blue-400 transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium">Contact me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="code.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <header class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-8 gradient-text">Start your HTML5 learning journey</h1>
+            <p class="text-xl md:text-2xl mb-12 text-gray-300">Learn website programming step by step with Faycal FGX</p>
+            <a href="https://www.youtube.com/watch?v=E1z1qWWCGGA&list=PLPTNqXpQ2tbj12WDefiTH0VgnrTacD9cE" 
+               class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+               target="_blank">
+                WATCH THE COURSE NOW
+                <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <section id="about" class="mb-24">
+            <h2 class="text-3xl font-bold mb-12 gradient-text">About me</h2>
+            <div class="bg-gray-800 bg-opacity-50 rounded-2xl p-8 backdrop-blur-lg border border-gray-700">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Hello! I'm Faycal (FGX) from Algeria. I am passionate about web technology and enjoy learning and sharing knowledge about web design and development using HTML5 and modern web technologies. On this website, you'll find simplified tutorials that explain the basics of HTML5 in an easy and quick way. The goal of the site is to help you build your own websites and learn the fundamentals that will assist you in developing your programming skills. Whether you're a beginner or already have some experience, you'll find useful content here that will help you achieve your goals.
+                </p>
+            </div>
+        </section>
+
+        <section id="lessons" class="mb-24">
+            <h2 class="text-3xl font-bold mb-12 gradient-text">About website</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card rounded-2xl p-8">
+                    <div class="text-blue-400 mb-4 text-4xl">🌐</div>
+                    <h3 class="text-xl font-semibold mb-4">Distinctive educational content</h3>
+                    <p class="text-gray-300">We offer comprehensive lessons in programming, web design, and app development to meet the needs of all levels.</p>
+                </div>
+                <div class="feature-card rounded-2xl p-8">
+                    <div class="text-blue-400 mb-4 text-4xl">🛠</div>
+                    <h3 class="text-xl font-semibold mb-4">Innovative educational tools</h3>
+                    <p class="text-gray-300">Enjoy using modern educational tools that help you understand programming concepts easier and more interactively.</p>
+                </div>
+                <div class="feature-card rounded-2xl p-8">
+                    <div class="text-blue-400 mb-4 text-4xl">🚀</div>
+                    <h3 class="text-xl font-semibold mb-4">Supportive community</h3>
+                    <p class="text-gray-300">Join a community of learners and professionals where you can ask questions, share projects, and learn with others.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="text-center">
+            <h2 class="text-3xl font-bold mb-12 gradient-text">Contact me</h2>
+            <div class="flex justify-center space-x-8">
+                <a href="https://www.facebook.com/faycel.bsr" target="_blank" class="social-icon bg-gray-800 p-4 rounded-full hover:bg-blue-600 transition-all duration-300">
+                    <i class="fab fa-facebook text-2xl"></i>
+                </a>
+                <a href="https://www.instagram.com/faycel.142/" target="_blank" class="social-icon bg-gray-800 p-4 rounded-full hover:bg-purple-600 transition-all duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="https://www.tiktok.com/@faycel_bsr" target="_blank" class="social-icon bg-gray-800 p-4 rounded-full hover:bg-pink-600 transition-all duration-300">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+                <a href="mailto:faysalcommerce@gmail.com" class="social-icon bg-gray-800 p-4 rounded-full hover:bg-red-600 transition-all duration-300">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-8 mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">جميع الحقوق محفوظة © 2024 FGX</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('nav');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(17, 24, 39, 0.95)';
+                    nav.style.backdropFilter = 'blur(12px)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.1)';
+                    nav.style.backdropFilter = 'blur(12px)';
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
