@@ -1,282 +1,721 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn HTML5 | FGX</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <title>تعلم HTML5 | FGX</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #3b82f6;
-            --secondary: #1d4ed8;
-            --accent: #6366f1;
-            --text: #f3f4f6;
-            --background: #0f172a;
+            --primary: #8B5CF6;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --pink: #EC4899;
+            --green: #10B981;
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #64748B;
+            --bg-primary: #0F0F23;
+            --bg-secondary: #1E1E3F;
+            --bg-glass: rgba(30, 30, 63, 0.7);
+            --border: rgba(139, 92, 246, 0.2);
+            --shadow: rgba(139, 92, 246, 0.3);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            background: var(--background);
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            background: var(--bg-primary);
             background-image: 
-                radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
-                radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
-                radial-gradient(at 0% 50%, rgba(147, 51, 234, 0.1) 0px, transparent 50%);
+                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 25% 75%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, var(--bg-primary) 0%, #1a1a3a 100%);
             background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .glass-nav {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50px;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #60a5fa 0%, #6366f1 50%, #a855f7 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .feature-card {
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 35, 0.8);
+            border-bottom: 1px solid var(--border);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .feature-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border-color: rgba(99, 102, 241, 0.4);
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(15, 15, 35, 0.95);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
         }
 
-        .social-icon {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.15);
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--pink) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            position: relative;
         }
 
-         .floating {
-    position: fixed; 
-    top: 15px; 
-    left: 93%;
-    transform: translateX(-50%);
-    z-index: 5; 
-    animation: none;
-}
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-10px) rotate(2deg); }
-            75% { transform: translateY(10px) rotate(-2deg); }
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
-        .hero-button {
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
         }
 
-        .hero-button::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300%;
-            height: 300%;
-            background: linear-gradient(45deg, #3b82f6, #6366f1, #a855f7, #3b82f6);
-            transform: translate(-50%, -50%) rotate(45deg);
-            z-index: -1;
-            transition: all 0.6s ease;
-            animation: gradient-spin 4s linear infinite;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
         }
 
-        @keyframes gradient-spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
         }
 
-        .scroll-indicator {
-            animation: bounce 2s infinite;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-20px); }
-            60% { transform: translateY(-10px); }
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #8B5CF6 0%, #06B6D4 25%, #EC4899 50%, #F59E0B 75%, #10B981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+       
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+     
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 50px;
+        }
+
+        .about-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            text-align: justify;
         }
 
         .features-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:nth-child(1) .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: linear-gradient(135deg, var(--secondary), var(--green));
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: linear-gradient(135deg, var(--pink), var(--accent));
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+       
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link.facebook {
+            background: linear-gradient(135deg, #1877F2, #42A5F5);
+        }
+
+        .social-link.instagram {
+            background: linear-gradient(135deg, #E4405F, #FFDC80);
+        }
+
+        .social-link.tiktok {
+            background: linear-gradient(135deg, #000000, #25F4EE);
+        }
+
+        .social-link.email {
+            background: linear-gradient(135deg, #EA4335, #FBBC04);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .social-link:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+   
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 4rem;
+        }
+
+    
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .about-card,
+            .feature-card {
+                padding: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+     
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-shapes::before,
+        .floating-shapes::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            animation: float 20s infinite linear;
+        }
+
+        .floating-shapes::before {
+            top: -100px;
+            left: -100px;
+            animation-delay: -10s;
+        }
+
+        .floating-shapes::after {
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+            100% { transform: translateY(0) rotate(360deg); }
         }
     </style>
 </head>
-<body class="text-gray-100">
-    <nav class="glass-nav fixed w-full z-50 transition-all duration-500">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between h-20 items-center">
-                <div class="flex-shrink-0 floating">
-                    
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-300 hover:text-white hover:scale-105 transition-all duration-300 px-4 py-2 rounded-lg text-sm font-medium">About me</a>
-                    <a href="#lessons" class="text-gray-300 hover:text-white hover:scale-105 transition-all duration-300 px-4 py-2 rounded-lg text-sm font-medium">About website</a>
-                    <a href="#contact" class="text-gray-300 hover:text-white hover:scale-105 transition-all duration-300 px-4 py-2 rounded-lg text-sm font-medium">Contact me</a>
-                </div>
-            </div>
+<body>
+    <div class="floating-shapes"></div>
+    
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">FGX</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">نبذة عني</a></li>
+                <li><a href="#lessons" class="nav-link">عن الموقع</a></li>
+                <li><a href="#contact" class="nav-link">تواصل معي</a></li>
+            </ul>
         </div>
     </nav>
 
-    <header class="min-h-screen flex flex-col items-center justify-center px-6 relative">
-        <div class="text-center max-w-4xl">
-            <h1 class="text-6xl md:text-7xl font-bold mb-8 gradient-text tracking-tight">Master HTML5 Development</h1>
-            <p class="text-xl md:text-2xl mb-12 text-gray-300">Embark on your web development journey with expert guidance from Faycal FGX</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">تعلم تطوير الويب الحديث</h1>
+            <p class="hero-subtitle">ابدأ رحلتك في عالم تطوير الويب مع خبير التقنيات الحديثة فيصل FGX</p>
             <a href="https://www.youtube.com/watch?v=E1z1qWWCGGA&list=PLPTNqXpQ2tbj12WDefiTH0VgnrTacD9cE" 
-               class="hero-button inline-flex items-center px-8 py-4 text-lg font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-               target="_blank">
-                Start Learning Now
-                <svg class="ml-2 w-6 h-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+               class="btn-primary" target="_blank">
+                <i class="fas fa-play"></i>
+                ابدأ التعلم الآن
             </a>
         </div>
-        <div class="absolute bottom-10 scroll-indicator">
-            <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
-        </div>
-    </header>
+    </section>
 
-    <main class="max-w-7xl mx-auto px-6 py-24 space-y-32">
-        <section id="about">
-            <h2 class="text-4xl font-bold mb-16 gradient-text text-center">About me</h2>
-            <div class="feature-card p-8 rounded-2xl max-w-3xl mx-auto">
-                <p class="text-lg text-gray-300 leading-relaxed">
-                    Hello! I'm Faycal (FGX) from Algeria, a passionate web technology enthusiast dedicated to sharing knowledge about modern web development. Through this platform, I offer comprehensive yet accessible tutorials on HTML5 and contemporary web technologies. Whether you're taking your first steps in coding or looking to enhance your existing skills, you'll find valuable resources here to accelerate your learning journey and turn your web development aspirations into reality.
+    <main>
+        <section class="section" id="about">
+            <h2 class="section-title">نبذة عني</h2>
+            <div class="about-card">
+                <p class="about-text">
+                    أهلاً بك! أنا فيصل (FGX) من الجزائر، متحمس لتقنيات الويب ومكرس لمشاركة المعرفة حول تطوير الويب الحديث. من خلال هذه المنصة، أقدم دروساً شاملة ومفهومة حول HTML5 والتقنيات المعاصرة لتطوير الويب. سواء كنت تتخذ خطواتك الأولى في البرمجة أو تسعى لتطوير مهاراتك الحالية، ستجد هنا موارد قيمة لتسريع رحلة التعلم وتحويل طموحاتك في تطوير الويب إلى حقيقة.
                 </p>
             </div>
         </section>
 
-        <section id="lessons">
-            <h2 class="text-4xl font-bold mb-16 gradient-text text-center">What We Offer</h2>
+        <section class="section" id="lessons">
+            <h2 class="section-title">ما نقدمه لك</h2>
             <div class="features-grid">
-                <div class="feature-card rounded-2xl p-8 group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🌐</div>
-                    <h3 class="text-2xl font-semibold mb-4 gradient-text">Premium Content</h3>
-                    <p class="text-gray-300">Expertly crafted lessons covering everything from basic HTML to advanced web development concepts, ensuring a comprehensive learning experience.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="feature-title">محتوى متميز</h3>
+                    <p class="feature-description">دروس مصممة بخبرة تغطي كل شيء من أساسيات HTML إلى مفاهيم تطوير الويب المتقدمة، مما يضمن تجربة تعليمية شاملة ومتميزة.</p>
                 </div>
-                <div class="feature-card rounded-2xl p-8 group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🛠</div>
-                    <h3 class="text-2xl font-semibold mb-4 gradient-text">Interactive Learning</h3>
-                    <p class="text-gray-300">Hands-on exercises and practical projects that help you master web development concepts through real-world application.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="feature-title">تعلم تفاعلي</h3>
+                    <p class="feature-description">تمارين عملية ومشاريع تطبيقية تساعدك على إتقان مفاهيم تطوير الويب من خلال التطبيق في مشاريع حقيقية وعملية.</p>
                 </div>
-                <div class="feature-card rounded-2xl p-8 group">
-                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🚀</div>
-                    <h3 class="text-2xl font-semibold mb-4 gradient-text">Growing Community</h3>
-                    <p class="text-gray-300">Join our vibrant community of learners where you can collaborate, share ideas, and grow together in your development journey.</p>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">مجتمع نشط</h3>
+                    <p class="feature-description">انضم إلى مجتمعنا النشط من المتعلمين حيث يمكنك التعاون ومشاركة الأفكار والنمو معاً في رحلة التطوير والتعلم.</p>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="text-center">
-            <h2 class="text-4xl font-bold mb-16 gradient-text">Let's Connect</h2>
-            <div class="flex justify-center space-x-8">
-                <a href="https://www.facebook.com/faycel.142" target="_blank" class="social-icon bg-blue-600 p-5 rounded-full hover:bg-blue-700">
-                    <i class="fab fa-facebook-f text-2xl"></i>
+        <section class="section" id="contact">
+            <h2 class="section-title">تواصل معي</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/gauxil.142" target="_blank" class="social-link facebook">
+                    <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://www.instagram.com/faycel.142/" target="_blank" class="social-icon bg-gradient-to-br from-purple-600 to-pink-600 p-5 rounded-full">
-                    <i class="fab fa-instagram text-2xl"></i>
+                <a href="https://www.instagram.com/gauxil.142/" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.tiktok.com/@faycel_fgx" target="_blank" class="social-icon bg-black p-5 rounded-full hover:bg-gray-900">
-                    <i class="fab fa-tiktok text-2xl"></i>
+                <a href="https://www.tiktok.com/@gauxil__14" target="_blank" class="social-link tiktok">
+                    <i class="fab fa-tiktok"></i>
                 </a>
-                <a href="mailto:faysalcommerce@gmail.com" class="social-icon bg-red-600 p-5 rounded-full hover:bg-red-700">
-                    <i class="fas fa-envelope text-2xl"></i>
+                <a href="mailto:faysalcommerce@gmail.com" class="social-link email">
+                    <i class="fas fa-envelope"></i>
                 </a>
+                <a href="https://github.com/gfaysal142" target="_blank" class="social-link github">
+                    <i class="fa-brands fa-github"></i>                </a>
+                
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-900 py-8 mt-24 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p class="text-gray-400">© 2024 FGX. All rights reserved.</p>
-        </div>
+    <footer class="footer">
+        <p>© 2025 FGX. جميع الحقوق محفوظة.</p>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const nav = document.querySelector('nav');
-            let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const scrollY = window.scrollY;
             
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.pageYOffset;
-                
-                // Change nav background opacity based on scroll
-                if (currentScroll > 50) {
-                    nav.style.background = 'rgba(15, 23, 42, 0.95)';
-                } else {
-                    nav.style.background = 'rgba(15, 23, 42, 0.8)';
-                }
-                
-                // Hide/show nav based on scroll direction
-                if (currentScroll > lastScroll && currentScroll > 500) {
-                    nav.style.transform = 'translateY(-100%)';
-                } else {
-                    nav.style.transform = 'translateY(0)';
-                }
-                
-                lastScroll = currentScroll;
-            });
+            if (scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-            // Smooth scroll functionality
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    const navHeight = nav.offsetHeight;
+       
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
                     
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
                     });
-                });
+                }
             });
+        });
 
-            // Add parallax effect to feature cards
-            const cards = document.querySelectorAll('.feature-card');
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const xc = rect.width/2;
-                    const yc = rect.height/2;
-                    
-                    const dx = x - xc;
-                    const dy = y - yc;
-                    
-                    card.style.transform = `perspective(1000px) rotateY(${dx/20}deg) rotateX(${-dy/20}deg) translateY(-8px)`;
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = 'translateY(-8px)';
-                });
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .about-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+        });
+
+        let ticking = false;
+        function updateOnScroll() {
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateOnScroll);
+                ticking = true;
+            }
         });
     </script>
 </body>
